@@ -1,0 +1,12 @@
+[branch]
+	autosetuprebase = always
+[push]
+	default = current
+[core]
+  editor = /usr/bin/vim
+
+[user]
+	name = Ganesh Shankar
+	email = gshankar@yourtutor.com.au
+[color]
+	ui = true
