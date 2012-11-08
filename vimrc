@@ -25,6 +25,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
 
 filetype plugin indent on     " required!
 " }
@@ -53,6 +54,89 @@ function! SimpleFoldText()
 endfunction
 set foldtext=SimpleFoldText() " custom fold text function (cleaner than default)
 " }
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" Always display the status line
+set laststatus=2
+
+
+" Edit the README_FOR_APP (makes :R commands work)
+map <Leader>R :e doc/README_FOR_APP<CR>
+" Nerd Tree shortcut
+autocmd vimenter * NERDTree
+map <leader>n :NERDTreeToggle<CR>
+
+" Leader shortcuts for Rails commands
+map <Leader>m :Rmodel 
+map <Leader>c :Rcontroller 
+map <Leader>v :Rview 
+map <Leader>u :Runittest 
+map <Leader>f :Rfunctionaltest 
+map <Leader>sm :RSmodel 
+map <Leader>sc :RScontroller 
+map <Leader>sv :RSview 
+map <Leader>su :RSunittest 
+map <Leader>sf :RSfunctionaltest 
+" Edit routes
+command! Rroutes :e config/routes.rb
+command! RTroutes :tabe config/routes.rb
+
+" Toggle search highlighting 
+map <Leader>h :set invhls <CR>
+
+" Maps autocomplete to Control-Space
+imap <c-space> <C-N>
+
+" Duplicate a selection
+" Visual mode: D
+vmap D y'>p
+
+" For Haml
+au! BufRead,BufNewFile *.haml         setfiletype haml
+
+" No Help, please
+nmap <F1> <Esc>
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+
+" add in matchit.vim built in plugin
+runtime macros/matchit.vim
+
+
+" How to run current ruby file as ruby script and show result in new window:
+" :w !ruby | mvim -c "set nomodified" -
+
+" Turn off K (defaults to search for word under cursor, but I always typo it
+" when I mean to type J to join lines.
+  nmap K <nop>
+
+" I always fat-finger :W when I mean :w, so bind it
+cmap W w
+
+
+" Keep search result in center of screen.
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+
+" vim-slime settings
+let g:slime_target = "tmux"
+
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·
 
 " Files and buffers {
 set nobackup " don't backup files
@@ -132,14 +216,22 @@ set tabstop=8  " tab size (how many characters wide tabs are)
 set shiftwidth=2 " general purpose indent/unindent size
 set softtabstop=2 " number of spaces to insert instead of a tab
 set shiftround " round up to the next indentation column
-set completeopt= " don't use a pop up menu for completions
 set ignorecase " ignore case in patterns
 set infercase " infer case in patterns
 set smartcase " infer case in searches
 set formatoptions+=r " auto-insert comment leader when pressing enter
 set formatoptions+=q " format comments with gq
 set iskeyword+=-,_,$,@,%,#,? " these are not word dividers
-set complete=.,b " complete using current buffer, then all open buffers and then tags
+
+" Tab completion options
+" (only complete to the longest unambiguous match, and show a menu)
+set completeopt=longest,menu
+set wildmode=list:longest,list:full
+set complete=.,t
+
+" Case only matters with mixed case expressions
+set ignorecase
+set smartcase
 " }
 
 " File types {
