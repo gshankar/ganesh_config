@@ -1,3 +1,7 @@
 [user]
 	name = Ganesh Shankar
 	email = ganesh@ganeshshankar.com
+[branch]
+	autosetuprebase = always
+[push]
+	default = current

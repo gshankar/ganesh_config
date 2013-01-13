@@ -20,9 +20,10 @@ Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 
 filetype plugin indent on     " required!

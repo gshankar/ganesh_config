@@ -29,10 +29,11 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundle rails ruby ganesh)
+plugins=(git rails ruby ganesh)
 
 source $ZSH/oh-my-zsh.sh
 
+alias be="bundle exec"
 alias ls="ls -G"
 alias gst="git status"
 alias gpl="git pull"
@@ -66,8 +67,20 @@ git commit -am "$*"
 fi
 }
 
-# Use hub to wrap git with more GitHub commands
-eval "$(hub alias -s)"
+#output ruby version to prompt
+PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 
 # Customize to your needs...
-export PATH=/Users/ganesh/.rvm/gems/ruby-1.9.3-p194/bin:/Users/ganesh/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/ganesh/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/ganesh/.rvm/bin:/usr/local/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:/Applications/MacVim:/Users/ganesh/bin
+export PATH=/Users/ganesh/.rvm/gems/ruby-1.9.3-p194/bin:/Users/ganesh/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/ganesh/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/ganesh/.rvm/bin:/usr/local/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:/Applications/MacVim:/Users/ganesh/bin:/usr/local/sbin/
+
+
+# Setup Amazon EC2 Command-Line Tools
+export EC2_HOME=~/.ec2
+export PATH=$PATH:$EC2_HOME/bin
+export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
+export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+export EC2_URL="https://ec2.ap-southeast-2.amazonaws.com/"
+export AWS_AUTO_SCALING_HOME=$EC2_HOME
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
