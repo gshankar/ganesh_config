@@ -5,3 +5,8 @@
 	autosetuprebase = always
 [push]
 	default = current
+[merge]
+	tool = opendiff
+[color]
+	ui = true
+	ui = true
